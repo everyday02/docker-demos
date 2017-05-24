@@ -1,4 +1,6 @@
-### 交互式容器
+### Docker容器使用
+
+#### 交互式容器
 
 Docker 允许你在容器内运行应用程序， 使用 docker run 命令来在容器内运行一个应用程序
 
@@ -32,9 +34,9 @@ bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  s
 可以通过运行<code>exit</code>命令或者使用CTRL+D来退出容器。
 
 
-#### 启动容器（后台模式）
+#### 创建容器（后台模式）
 
-使用以下命令创建一个以进程方式运行的容器
+使用以下命令创建一个基于<code>ubuntu:15.10</code>镜像生成的容器
 ```shell
 $ docker run -d ubuntu:15.10 /bin/sh -c "while true; do echo hello world; sleep 1; done"
 # 2b1b7a428627c51ab8810d541d759f072b4fc75487eed05812646b8534a2fe63
@@ -77,3 +79,37 @@ docker stop 30731c9ad038
 ```
 
 再次执行<code>docker ps </code>，可以看到，已经没有容器处于运行状态。
+
+#### 启动容器
+
+容器停止运行后，可以使用<code>docker ps -a</code>来查看所有容器（包括已停止的）
+
+```shell
+docker ps -a
+#30731c9ad038        ubuntu:15.10        "/bin/sh -c 'while..."   38 minutes ago      Exited (137) 34 minutes ago                        admiring_panini
+#4e21550567c3        ubuntu:15.10        "/bin/sh -c 'while..."   42 minutes ago      Exited (137) 41 minutes ago                        nostalgic_allen
+#ec5e0f79f603        ubuntu:15.10        "/bin/bash"              About an hour ago   Exited (0) 44 minutes ago                          infallible_meitner
+#107b5bd391ac        ubuntu:15.10        "/bin/echo 'Hello ..."   About an hour ago   Exited (0) About an hour ago                       wizardly_kepler
+#3592074c8574        hello-world         "/hello"                 About an hour ago   Exited (0) About an hour ago                       blissful_noether
+#92b96d0c59df        hello-world         "/hello"                 About an hour ago   Exited (0) About an hour ago                       vigorous_lovelace
+#44f75c1e14f4        hello-world         "/hello"                 About an hour ago   Exited (0) About an hour ago                       zealous_davinci
+
+```
+
+可以执行<code>docker start</code>再次启动
+```shell
+# docker start admiring_panini
+docker start 30731c9ad038
+#  docker restart 30731c9ad038  重启正在运行的容器
+```
+
+#### 移除容器
+
+可以使用 docker rm 命令来删除不需要的容器
+
+删除容器时，容器必须是停止状态，否则会报如下错误
+
+```shell
+docker rm 30731c9ad038
+Error response from daemon: You cannot remove a running container 30731c9ad0385b2b8cdf654b9e541501a29444d6615be534e9b13d4edeebdb0b. Stop the container before attempting removal or force remove
+```
