@@ -214,7 +214,7 @@ RUN mv /tmp/apache-tomcat-7.0.8/ /opt/tomcat7/
 
 ENV CATALINA_HOME /opt/tomcat7  
 ENV PATH $PATH:$CATALINA_HOME/bin  
-
+# /etc/init.d是开机启动程序的控制脚本，加进来的目的是让tomcat开机启动
 ADD tomcat7.sh /etc/init.d/tomcat7  
 RUN chmod 755 /etc/init.d/tomcat7  
 
