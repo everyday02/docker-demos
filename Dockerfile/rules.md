@@ -150,6 +150,7 @@ ADD <src> <dest>
 
 ```shell
 # VOLUME ["<mountpoint>"]  
+# VOLUME ["/dir_1", "/dir_2" ..] 
 FROM base  
 VOLUME ["/tmp/data"]
 ```
