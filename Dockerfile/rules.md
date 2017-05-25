@@ -150,7 +150,7 @@ ADD <src> <dest>
 
 ```shell
 # VOLUME ["<mountpoint>"]  
-# VOLUME ["/dir_1", "/dir_2" ..] 
+# VOLUME ["/dir_1", "/dir_2" ..]
 FROM base  
 VOLUME ["/tmp/data"]
 ```
@@ -260,3 +260,7 @@ docker run -d -p 8090:8080 zingdocker/jdk-tomcat
 http://<host>:8090 host为主机IP
 
 [原文地址](http://blog.csdn.net/qinyushuang/article/details/43342553)
+
+参考文章
+
+ * [Dockerfile 简版大全，附赠编写实例](http://cloud.51cto.com/art/201507/484673.htm)
